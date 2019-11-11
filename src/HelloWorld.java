@@ -1,6 +1,7 @@
 import src.Party;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -37,6 +38,14 @@ import java.util.GregorianCalendar;
         public Party sayJSONHello() {
             GregorianCalendar calendar = new GregorianCalendar();
             Party party = new Party("dd","dd",(Date) calendar.getTime(),"here");
+
+            return party;
+        }
+
+        @POST
+        @Produces(MediaType.APPLICATION_JSON)
+        public Party getJSONHello(Party party) {
+
 
             return party;
         }
