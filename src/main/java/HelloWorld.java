@@ -1,11 +1,11 @@
-import src.Party;
+import com.google.gson.Gson;
+import domain.Party;
+import model.ModelManager;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.Date;
+
 import java.util.GregorianCalendar;
 
     // The Java class will be hosted at the URI path "/helloworld"
@@ -37,17 +37,21 @@ import java.util.GregorianCalendar;
         @Produces(MediaType.APPLICATION_JSON)
         public Party sayJSONHello() {
             GregorianCalendar calendar = new GregorianCalendar();
-            Party party = new Party("dd","dd",(Date) calendar.getTime(),"here");
+            Party party = new Party("dddddddddd","dd", calendar.getTime()+"","here");
 
             return party;
         }
 
         @POST
+        @Path("/party")
+        @Consumes(MediaType.APPLICATION_JSON)
         @Produces(MediaType.APPLICATION_JSON)
-        public Party getJSONHello(Party party) {
-
-
-            return party;
+        public String getJSONHello(Party party) {
+            Test test = new Test();
+            System.out.println(party);
+            ModelManager mm = new ModelManager();
+            mm.createParty(party);
+             return party.toString();
         }
 
 
